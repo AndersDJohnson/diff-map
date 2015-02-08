@@ -45,7 +45,7 @@ public class DiffMap {
 
         Map<Integer, Delta> deltaMap = [:]
 
-        deltas.each { Delta delta ->
+        deltas.each() { Delta delta ->
             deltaMap[delta.original.position] = delta
         }
 
