@@ -1,5 +1,5 @@
 apply plugin: 'groovy'
-apply plugin: 'maven'
+apply plugin: 'com.github.johnrengelman.shadow'
 
 sourceCompatibility = 1.5
 version = '1.0'
@@ -9,7 +9,14 @@ task wrapper(type: Wrapper) {
   distributionUrl = 'http://services.gradle.org/distributions/gradle-1.9-all.zip'
 }
 
-println buildDir
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.0'
+    }
+}
 
 repositories {
     mavenCentral()
@@ -20,4 +27,14 @@ dependencies {
     compile 'com.googlecode.java-diff-utils:diffutils:1.2.1'
     compile 'org.slf4j:slf4j-simple:1.7.10'
     testCompile 'junit:junit:4.11'
+}
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Title': project.name,
+            'Implementation-Version': version,
+            'Main-Class': 'DiffMap',
+        )
+    }
 }
