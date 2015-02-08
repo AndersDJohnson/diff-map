@@ -2,6 +2,29 @@
 
 Map line numbers across diffs.
 
+## Examples
+
+Until JAR is distributed, you can build one with:
+
+```
+gradle shadowJar
+```
+
+Then you can run, e.g. on two files:
+
+```
+java -jar build\libs\diff-map-1.0-all.jar src\test\resources\fixtures\a.txt src\test\resources\fixtures\b.txt
+```
+
+The output might look like this:
+
+```
+[0:null, 1:0, 2:1, 3:4, 4:7, 5:8]
+```
+
+For other examples, see `scripts`.
+
+
 ## Code research
 
 * https://code.google.com/p/java-diff-utils/
