@@ -14,22 +14,26 @@ public class DiffMap {
 
     private static final int defaultOriginalSize = 1000
 
-    public static void main(String[] args) {
-        List<String> diffLines = System.in.readLines()
-        Map<Integer, Integer> map = map(diffLines, defaultOriginalSize)
-        println "map: $map"
-    }
-
-    public static Map<Integer, Integer> map(List<String> diffLines, int originalSize) {
+    public static Map<Integer, Integer> map(
+            List<String> diffLines,
+            int originalSize = defaultOriginalSize
+    ) {
         Patch patch = DiffUtils.parseUnifiedDiff(diffLines)
 
         return map(patch, originalSize)
     }
 
-    public static Map<Integer, Integer> map(List<String> a, List<String> b) {
-        Patch patch = DiffUtils.diff(a, b)
+    public static Map<Integer, Integer> map(File fromFile, File toFile) {
+        List<String> fromLines = fromFile.readLines()
+        List<String> toLines = toFile.readLines()
 
-        return map(patch, a.size())
+        return map(fromLines, toLines)
+    }
+
+        public static Map<Integer, Integer> map(List<String> fromLines, List<String> toLines) {
+        Patch patch = DiffUtils.diff(fromLines, toLines)
+
+        return map(patch, fromLines.size())
     }
 
     public static Map<Integer, Integer> map(Patch patch, int originalSize) {

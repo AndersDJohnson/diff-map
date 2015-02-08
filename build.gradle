@@ -27,6 +27,7 @@ dependencies {
     compile 'org.codehaus.groovy:groovy-all:2.3.6'
     compile 'com.googlecode.java-diff-utils:diffutils:1.2.1'
     compile 'org.slf4j:slf4j-simple:1.7.10'
+    compile "commons-cli:commons-cli:1.2"
     testCompile 'junit:junit:4.11'
 }
 
@@ -35,7 +36,7 @@ jar {
         attributes(
             'Implementation-Title': project.name,
             'Implementation-Version': version,
-            'Main-Class': 'DiffMap',
+            'Main-Class': 'DiffMapCli',
         )
     }
 }
