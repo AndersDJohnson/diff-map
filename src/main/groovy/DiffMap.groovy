@@ -12,10 +12,29 @@ import groovy.util.logging.Slf4j
 @Slf4j
 public class DiffMap {
 
+    private static final int defaultOriginalSize = 1000
+
+    public static void main(String[] args) {
+        List<String> diffLines = System.in.readLines()
+        Map<Integer, Integer> map = map(diffLines, defaultOriginalSize)
+        println "map: $map"
+    }
+
+    public static Map<Integer, Integer> map(List<String> diffLines, int originalSize) {
+        Patch patch = DiffUtils.parseUnifiedDiff(diffLines)
+
+        return map(patch, originalSize)
+    }
+
     public static Map<Integer, Integer> map(List<String> a, List<String> b) {
+        Patch patch = DiffUtils.diff(a, b)
+
+        return map(patch, a.size())
+    }
+
+    public static Map<Integer, Integer> map(Patch patch, int originalSize) {
         Map<Integer, Integer> map = [:]
 
-        Patch patch = DiffUtils.diff(a, b)
         List<Delta> deltas = patch.deltas
 
         log.debug "deltas: $deltas"
@@ -30,7 +49,7 @@ public class DiffMap {
 
         int j = 0
 
-        for ( int i = 0; i < a.size(); ) {
+        for ( int i = 0; i < originalSize; ) {
             log.debug '----------'
             log.debug "map: $map"
             log.debug "i: $i, j: $j"
