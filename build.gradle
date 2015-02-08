@@ -1,6 +1,7 @@
 apply plugin: 'groovy'
 apply plugin: 'project-report'
 apply plugin: 'com.github.johnrengelman.shadow'
+apply plugin: 'idea'
 
 sourceCompatibility = 1.5
 version = '1.0'
