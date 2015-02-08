@@ -1,3 +1,6 @@
+# diff-map
+
+Map line numbers across diffs.
 
 ## Code research
 
