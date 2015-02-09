@@ -38,12 +38,8 @@ public class DiffMapCli {
 
         String fromFilePath = optArgs[0]
         String toFilePath = optArgs[1]
-        log.debug "fromFilePath: $fromFilePath, toFilePath: $toFilePath"
 
-        File fromFile = new File(fromFilePath)
-        File toFile = new File(toFilePath)
-
-        def map = DiffMap.map(fromFile, toFile)
+        def map = DiffMap.mapFromFilePaths(fromFilePath, toFilePath)
 
         println map
     }

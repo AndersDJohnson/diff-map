@@ -23,6 +23,13 @@ public class DiffMap {
         return map(patch, originalSize)
     }
 
+    public static Map<Integer, Integer> mapFromFilePaths(String fromFilePath, String toFilePath) {
+        File fromFile = new File(fromFilePath)
+        File toFile = new File(toFilePath)
+
+        return map(fromFile, toFile)
+    }
+
     public static Map<Integer, Integer> map(File fromFile, File toFile) {
         List<String> fromLines = fromFile.readLines()
         List<String> toLines = toFile.readLines()
@@ -30,7 +37,7 @@ public class DiffMap {
         return map(fromLines, toLines)
     }
 
-        public static Map<Integer, Integer> map(List<String> fromLines, List<String> toLines) {
+    public static Map<Integer, Integer> map(List<String> fromLines, List<String> toLines) {
         Patch patch = DiffUtils.diff(fromLines, toLines)
 
         return map(patch, fromLines.size())
