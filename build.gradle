@@ -4,6 +4,7 @@ apply plugin: 'com.github.johnrengelman.shadow'
 apply plugin: 'idea'
 
 sourceCompatibility = 1.5
+group = 'me.andrz.diff'
 version = '1.0'
 
 task wrapper(type: Wrapper) {
